@@ -1,10 +1,502 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-    <title>Welcome to my Website!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crochet Time by Thanyalak - สินค้าโครเชย์สไตล์วินเทจ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /*
+         * กำหนดตัวแปรสี
+         */
+        :root {
+            --color-beige: #f5f5dc;      /* สีเบจอ่อน */
+            --color-light-brown: #d2b48c;  /* สีน้ำตาลอ่อน */
+            --color-white: #ffffff;
+            --color-soft-pink: #f8c8d0;  /* สีชมพูอ่อน */
+            --color-dark-brown: #8b4513; /* สีน้ำตาลเข้มสำหรับข้อความ */
+            --color-accent: #e9967a;     /* สีส้มอมชมพูสำหรับเน้น */
+        }
+
+        /*
+         * การตั้งค่าพื้นฐาน
+         */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--color-dark-brown);
+            background-color: var(--color-beige);
+            scroll-behavior: smooth;
+        }
+
+        /*
+         * องค์ประกอบร่วม
+         */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .section-heading {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--color-dark-brown);
+            position: relative;
+        }
+
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-soft-pink);
+            margin: 10px auto 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-soft-pink);
+            color: var(--color-dark-brown);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border: 2px solid var(--color-dark-brown);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: var(--color-dark-brown);
+            color: var(--color-white);
+            border-color: var(--color-soft-pink);
+        }
+        
+        /*
+         * 1. Navigation Bar
+         */
+        .navbar {
+            background-color: var(--color-light-brown);
+            color: var(--color-dark-brown);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--color-dark-brown);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: none; /* ซ่อนบนมือถือ */
+        }
+
+        .nav-links li {
+            display: inline;
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--color-dark-brown);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-white);
+        }
+
+        /* Hamburger Menu (Responsive) */
+        .menu-toggle {
+            display: block; /* แสดงบนมือถือ */
+            cursor: pointer;
+            font-size: 1.5rem;
+            border: none;
+            background: none;
+            color: var(--color-dark-brown);
+        }
+
+        /* เปิดเมนูสำหรับมือถือ */
+        .nav-links.active {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--color-light-brown);
+            box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+        
+        .nav-links.active li {
+            margin: 0;
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links.active a {
+            display: block;
+        }
+
+        /* ซ่อน Hamburger บนเดสก์ท็อป */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex; /* แสดงบนเดสก์ท็อป */
+            }
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        /*
+         * 2. Hero Section
+         */
+        #hero {
+            background: url('https://via.placeholder.com/1920x800/f8c8d0/8b4513?text=Vintage+Crochet+Background') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-dark-brown); /* ข้อความควรโดดเด่น */
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.7); /* เงาข้อความช่วยให้อ่านง่าย */
+        }
+
+        .hero-content {
+            background-color: rgba(255, 255, 255, 0.7); /* พื้นหลังโปร่งแสงสไตล์วินเทจ */
+            padding: 3rem;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        #hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--color-dark-brown);
+        }
+
+        #hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        /*
+         * 3. About Us
+         */
+        #about {
+            background-color: var(--color-white);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--color-light-brown);
+        }
+
+        @media (min-width: 768px) {
+            .about-content {
+                flex-direction: row;
+                text-align: left;
+            }
+            .about-text {
+                padding-right: 2rem;
+            }
+        }
+        
+        /*
+         * 4. Our Services
+         */
+        #services {
+            background-color: var(--color-beige);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service-item {
+            background-color: var(--color-light-brown);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-soft-pink);
+            transition: transform 0.3s;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-dark-brown);
+        }
+        
+        /*
+         * 5. Contact Form
+         */
+        #contact {
+            background-color: var(--color-soft-pink);
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--color-dark-brown);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-dark-brown);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-light-brown);
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-soft-pink);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form-container .btn {
+            width: 100%;
+            border: 2px solid var(--color-dark-brown);
+        }
+        
+        /*
+         * 6. Footer
+         */
+        .footer {
+            background-color: var(--color-dark-brown);
+            color: var(--color-beige);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        .social-links a {
+            color: var(--color-soft-pink);
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--color-white);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello from GitHub Pages!</h1>
-    <p>This is my personal website.</p>
+
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#hero" class="logo">🧶 Crochet Time by Thanyalak</a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+                &#9776; </button>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#hero" onclick="document.querySelector('.nav-links').classList.remove('active')">หน้าแรก</a></li>
+                    <li><a href="#about" onclick="document.querySelector('.nav-links').classList.remove('active')">เกี่ยวกับเรา</a></li>
+                    <li><a href="#services" onclick="document.querySelector('.nav-links').classList.remove('active')">บริการของเรา</a></li>
+                    <li><a href="#contact" onclick="document.querySelector('.nav-links').classList.remove('active')">ติดต่อ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="section">
+        <div class="hero-content">
+            <h1>เสน่ห์งานโครเชย์ 🕰️ สไตล์วินเทจ</h1>
+            <p>ถักทอด้วยรัก สร้างสรรค์ของขวัญและของใช้ที่มีคุณค่าทางจิตใจ</p>
+            <a href="#services" class="btn">ดูสินค้า & บริการของเรา</a>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-heading">เกี่ยวกับเรา</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Crochet Time by Thanyalak</strong> ก่อตั้งขึ้นจากความหลงใหลในศิลปะการถักโครเชย์และเสน่ห์ของสไตล์วินเทจ เราเชื่อว่าทุกชิ้นงานโครเชย์คือการส่งต่อความรักและความอบอุ่น</p>
+                    <p>สินค้าของเราทุกชิ้นถูกถักทอด้วยมืออย่างปราณีต ใช้วัสดุคุณภาพดี และเน้นดีไซน์ที่เรียบง่ายแต่คลาสสิก เพื่อให้คุณได้ครอบครองสินค้าที่มีเอกลักษณ์และคงทนเหนือกาลเวลา</p>
+                    <p>ไม่ว่าจะเป็นตุ๊กตา พวงกุญแจ หรือของตกแต่งบ้าน เราหวังว่าสินค้าโครเชย์ของเราจะนำความสุขและความทรงจำอันแสนหวานมาสู่ผู้รับทุกคน</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/400x400/d2b48c/8b4513?text=Handmade+Crochet+Item" alt="สินค้าโครเชย์แฮนด์เมค">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-heading">บริการของเรา</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <h4>สินค้าพร้อมส่ง</h4>
+                    <p>คอลเลกชันสินค้าโครเชย์สไตล์วินเทจที่พร้อมส่งถึงมือคุณทันที เช่น ผ้าปูโต๊ะเล็ก, พวงกุญแจดอกไม้</p>
+                </div>
+                <div class="service-item">
+                    <h4>สั่งทำพิเศษ (Custom Order)</h4>
+                    <p>ออกแบบและถักสินค้าตามความต้องการเฉพาะของคุณ ไม่ว่าจะเป็นของขวัญพิเศษหรือของตกแต่งในโอกาสสำคัญ</p>
+                </div>
+                <div class="service-item">
+                    <h4>ชุดอุปกรณ์ถัก</h4>
+                    <p>จำหน่ายไหมพรมและอุปกรณ์คุณภาพ พร้อมแพทเทิร์นง่ายๆ สำหรับมือใหม่ที่ต้องการเริ่มต้นถักโครเชย์</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-heading">ติดต่อเรา</h2>
+            <div class="contact-form-container">
+                <p style="margin-bottom: 1.5rem;">มีคำถามหรือต้องการสั่งทำพิเศษ? โปรดกรอกแบบฟอร์มด้านล่างนี้</p>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">ชื่อ-นามสกุล:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">อีเมล:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">ข้อความ/รายละเอียดการสั่งทำ:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">ส่งข้อความ</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Crochet Time by Thanyalak. สงวนลิขสิทธิ์ทั้งหมด</p>
+            <p>ติดตามเรา:
+                <span class="social-links">
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Line">💚</a>
+                </span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // ปิดเมนูเมื่อคลิกที่ลิงก์ในโหมดมือถือ
+            const links = navLinks.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
